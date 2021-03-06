@@ -249,6 +249,13 @@ namespace LetMeRest
                 paisageMultiplier = 1.2f;
             }
 
+            // Club information check
+            if (Game1.player.currentLocation.Name == "Club")
+            {
+                // Add multiplier in club
+                paisageMultiplier = 1.2f;
+            }
+
 
             float[] send = new float[]
             {

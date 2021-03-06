@@ -57,12 +57,15 @@ namespace LetMeRest
             // Multiplayer Pause Check
             if (Context.IsMultiplayer && Game1.player.requestingTimePause) return;
 
+            //--------------------------------------------------------------------------- TEST LINE
+            this.Monitor.Log($"Current location: {Game1.player.currentLocation.Name}", LogLevel.Info);
+            //--------------------------------------------------------------------------- TEST LINE
+
             // Check sitting
             if (Game1.player.IsSitting())
             {
                 float secretMultiplier = Secrets.CheckForSecrets();
                 increaseStamina(1f, secretMultiplier);
-                this.Monitor.Log($"Secret Multiplier: {secretMultiplier}", LogLevel.Info);
             }
             // Check riding
             if (Game1.player.isRidingHorse())
