@@ -238,8 +238,15 @@ namespace LetMeRest
             // Island East information check
             if (Game1.player.currentLocation.Name == "IslandEast")
             {
-                // Add multiplier in desert
+                // Add multiplier in island east
                 paisageMultiplier = 1.5f;
+            }
+
+            // Saloon information check
+            if (Game1.player.currentLocation.Name == "Saloon")
+            {
+                // Add multiplier in saloon
+                paisageMultiplier = 1.2f;
             }
 
 

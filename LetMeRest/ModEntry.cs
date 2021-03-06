@@ -57,6 +57,8 @@ namespace LetMeRest
             // Multiplayer Pause Check
             if (Context.IsMultiplayer && Game1.player.requestingTimePause) return;
 
+            this.Monitor.Log($"Current map: {Game1.player.currentLocation.Name}", LogLevel.Info);
+
             // Check sitting
             if (Game1.player.IsSitting())
             {
