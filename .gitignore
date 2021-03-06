@@ -1,2 +1,15 @@
 
 *.cache
+.vs/LetMeRest/v16/.suo
+LetMeRest/obj/Debug/.NETFramework,Version=v4.5.2.AssemblyAttributes.cs
+LetMeRest/Secrets.cs
+packages/Pathoschild.Stardew.ModBuildConfig.3.2.2/.signature.p7s
+packages/Pathoschild.Stardew.ModBuildConfig.3.2.2/analyzers/dotnet/cs/SMAPI.ModBuildConfig.Analyzer.dll
+packages/Pathoschild.Stardew.ModBuildConfig.3.2.2/build/find-game-folder.targets
+packages/Pathoschild.Stardew.ModBuildConfig.3.2.2/build/Newtonsoft.Json.dll
+packages/Pathoschild.Stardew.ModBuildConfig.3.2.2/build/Pathoschild.Stardew.ModBuildConfig.targets
+packages/Pathoschild.Stardew.ModBuildConfig.3.2.2/build/SMAPI.ModBuildConfig.dll
+packages/Pathoschild.Stardew.ModBuildConfig.3.2.2/build/SMAPI.Toolkit.CoreInterfaces.dll
+packages/Pathoschild.Stardew.ModBuildConfig.3.2.2/build/SMAPI.Toolkit.dll
+packages/Pathoschild.Stardew.ModBuildConfig.3.2.2/images/icon.png
+packages/Pathoschild.Stardew.ModBuildConfig.3.2.2/Pathoschild.Stardew.ModBuildConfig.3.2.2.nupkg
