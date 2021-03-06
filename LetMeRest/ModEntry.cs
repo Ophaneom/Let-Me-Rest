@@ -53,15 +53,16 @@ namespace LetMeRest
             }
 
             // Singleplayer Pause Check
-            if (!Context.IsMultiplayer && !Context.IsPlayerFree && !Context.IsInDrawLoop) return;
+            if (!Context.IsMultiplayer && !Context.IsPlayerFree) return;
             // Multiplayer Pause Check
-            if (Context.IsMultiplayer && !Context.IsPlayerFree && !Context.IsInDrawLoop) return;
+            if (Context.IsMultiplayer && Game1.player.requestingTimePause) return;
 
             // Check sitting
             if (Game1.player.IsSitting())
             {
                 float secretMultiplier = Secrets.CheckForSecrets();
                 increaseStamina(1f, secretMultiplier);
+                this.Monitor.Log($"Secret Multiplier: {secretMultiplier}", LogLevel.Info);
             }
             // Check riding
             if (Game1.player.isRidingHorse())
