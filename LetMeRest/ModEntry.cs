@@ -60,12 +60,13 @@ namespace LetMeRest
             // Check sitting
             if (Game1.player.IsSitting())
             {
-                increaseStamina(1f);
+                float secretMultiplier = Secrets.CheckForSecrets();
+                increaseStamina(1f, secretMultiplier);
             }
             // Check riding
             if (Game1.player.isRidingHorse())
             {
-                increaseStamina(0.25f);
+                increaseStamina(0.25f, 1);
             }
             // Check movement
             if (!Game1.player.isMoving() &&
@@ -74,7 +75,7 @@ namespace LetMeRest
                 !Game1.player.UsingTool)
             {
                 if (movingTimer > 0) movingTimer--;
-                else increaseStamina(0.25f);
+                else increaseStamina(0.25f, 1);
             }
             else
             {
@@ -84,7 +85,7 @@ namespace LetMeRest
 
         }
 
-        private void increaseStamina(float value)
+        private void increaseStamina(float value, float secretMultiplier)
         {
             if (Game1.player.Stamina < Game1.player.MaxStamina)
             {
@@ -102,7 +103,8 @@ namespace LetMeRest
                     Game1.player.Stamina += (value * data.staminaMultiplier) * 
                         ((decorationMultiplier * 1.25f) * data.staminaMultiplier) * 
                         (waterMultiplier * data.staminaMultiplier) *
-                        (paisageMultiplier * data.staminaMultiplier);
+                        (paisageMultiplier * data.staminaMultiplier) *
+                        (secretMultiplier * data.staminaMultiplier);
                 }
                 // Increases stamina in singleplayer
                 else
@@ -110,7 +112,8 @@ namespace LetMeRest
                     Game1.player.Stamina += (value * config.Multiplier) *
                         ((decorationMultiplier * 1.25f) * config.Multiplier) *
                         (waterMultiplier * config.Multiplier) *
-                        (paisageMultiplier * config.Multiplier);
+                        (paisageMultiplier * config.Multiplier) *
+                        (secretMultiplier * config.Multiplier);
                 }
             }
         }
