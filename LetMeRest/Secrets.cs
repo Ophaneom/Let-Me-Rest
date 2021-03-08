@@ -56,6 +56,30 @@ namespace LetMeRest
                 }
             }
 
+            if (Game1.player.currentLocation.Name == "IslandSouthEastCave" && Game1.player.hat.Value != null)
+            {
+                string hatName = Game1.player.hat.Value.Name;
+
+                if (hatName == "Pirate Hat" || hatName == "Deluxe Pirate Hat" || hatName == "Eye Patch")
+                {
+                    return 1.5f;
+                }
+            }
+
+            if (Game1.player.currentLocation.Name == "QiNutRoom" && Game1.player.hat.Value != null)
+            {
+                string hatName = Game1.player.hat.Value.Name;
+
+                if (hatName == "Qi Mask")
+                {
+                    return 1.65f;
+                }
+                else if (hatName == "???")
+                {
+                    return 2f;
+                }
+            }
+
             return 1;
         }
     }

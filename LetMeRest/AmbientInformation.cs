@@ -16,6 +16,8 @@ namespace LetMeRest
     {
         public static float[] Infos(int decorationRadius, Dictionary<string,float> ItemDataBase)
         {
+            IModHelper Helper = ModEntry.instance.Helper;
+
             // Player position
             Vector2 posPlayerTile = new Vector2(Game1.player.getTileX(), Game1.player.getTileY());
             // Actual tile
@@ -254,6 +256,83 @@ namespace LetMeRest
             {
                 // Add multiplier in club
                 paisageMultiplier = 1.2f;
+            }
+
+            // Island West Cave information check
+            if (Game1.player.currentLocation.Name == "IslandWestCave1")
+            {
+                // Add multiplier in Island West Cave
+                paisageMultiplier = 1.5f;
+            }
+
+            // Island South East information check
+            if (Game1.player.currentLocation.Name == "IslandSouthEast")
+            {
+                // Add multiplier in Island South East
+                paisageMultiplier = 1.5f;
+            }
+
+            // Island Shrine information check
+            if (Game1.player.currentLocation.Name == "IslandShrine")
+            {
+                // Add multiplier in Island Shrine
+                paisageMultiplier = 1.5f;
+            }
+
+            // Island Farm Cave information check
+            if (Game1.player.currentLocation.Name == "IslandFarmCave")
+            {
+                // Add multiplier in Island Farm Cave
+                paisageMultiplier = 1.5f;
+            }
+
+            if (Helper.ModRegistry.IsLoaded("FlashShifter.SVECode"))
+            {
+                // Check if player are in the Junimo Village
+                if (Game1.player.currentLocation.Name == "LostWoods")
+                {
+                    float borderRadius = 5;
+
+                    for (var y = posPlayerTile.Y - borderRadius; y < posPlayerTile.Y + borderRadius; y++)
+                    {
+                        for (var x = posPlayerTile.X - borderRadius; x < posPlayerTile.X + borderRadius; x++)
+                        {
+                            int TileId = Game1.player.currentLocation.getTileIndexAt((int)x, (int)y, "Buildings");
+
+                            if (TileId == 591 || TileId == 592 ||
+                                TileId == 593)
+                            {
+                                paisageMultiplier = 2.25f;
+                                startSound();
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                // ShearwaterBridge information check
+                if (Game1.player.currentLocation.Name == "ShearwaterBridge")
+                {
+                    // Check if player are below the bridge in ShearwaterBridge
+                    if (actualTileIndex == 598)
+                    {
+                        paisageMultiplier = 2.25f;
+                    }
+                }
+
+                // SpriteSpring information check
+                if (Game1.player.currentLocation.Name == "SpriteSpring")
+                {
+                    // Add multiplier in SpriteSpring
+                    paisageMultiplier = 2.25f;
+                }
+
+                // Summit information check
+                if (Game1.player.currentLocation.Name == "Summit")
+                {
+                    // Add multiplier in Summit
+                    paisageMultiplier = 2.1f;
+                }
             }
 
 
