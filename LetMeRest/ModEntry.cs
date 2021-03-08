@@ -51,7 +51,7 @@ namespace LetMeRest
 
         private void onUpdate(object sender, UpdateTickedEventArgs e)
         {
-            if (!Context.IsWorldReady) return;
+            if (!Context.IsWorldReady && !Game1.game1.IsActive) return;
             //Reset moving timer if using tool
             if (Game1.player.UsingTool)
             {
