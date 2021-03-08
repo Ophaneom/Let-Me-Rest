@@ -320,13 +320,6 @@ namespace LetMeRest
                     }
                 }
 
-                // SpriteSpring information check
-                if (Game1.player.currentLocation.Name == "SpriteSpring")
-                {
-                    // Add multiplier in SpriteSpring
-                    paisageMultiplier = 2.25f;
-                }
-
                 // Summit information check
                 if (Game1.player.currentLocation.Name == "Summit")
                 {

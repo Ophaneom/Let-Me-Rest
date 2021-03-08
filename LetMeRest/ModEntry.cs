@@ -95,7 +95,7 @@ namespace LetMeRest
                     if (config.SittingVerification)
                     {
                         float secretMultiplier = Secrets.CheckForSecrets();
-                        if (this.data.EnableSecrets) increaseStamina(1f, secretMultiplier);
+                        if (config.EnableSecrets) increaseStamina(1f, secretMultiplier);
                         else increaseStamina(1f, 1);
                     }
                 }
