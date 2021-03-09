@@ -15,7 +15,7 @@ Each furniture had a different multiplier, based on the rarity, price and cutene
 
 ## **1.0.2:**
 * Added some Stardew Valley Expanded locations.
-* Added new vanilla locations
+* Added new vanilla locations.
 * Added new commands.
 * Added new options to config.json and multiplayer data files.
 
