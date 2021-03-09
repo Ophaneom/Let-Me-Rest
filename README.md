@@ -9,6 +9,10 @@ You can sit, ride a horse or just stand still to recover stamina, having many mu
 Each furniture had a different multiplier, based on the rarity, price and cuteness!<br/>
 
 # **News:**
+## **1.0.3:**
+* Fixed stamina increasing when multiplayer are paused.
+* Fixed stamina increasing when game was alt-tabbed.
+
 ## **1.0.2:**
 * Added some Stardew Valley Expanded locations.
 * Added new vanilla locations
