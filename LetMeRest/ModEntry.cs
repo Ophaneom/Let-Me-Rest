@@ -51,7 +51,7 @@ namespace LetMeRest
 
         private void onUpdate(object sender, UpdateTickedEventArgs e)
         {
-            if (!Context.IsWorldReady && !Game1.game1.IsActive) return;
+            if (!Context.IsWorldReady) return;
             //Reset moving timer if using tool
             if (Game1.player.UsingTool)
             {
@@ -65,7 +65,7 @@ namespace LetMeRest
                 }
                 else
                 {
-                    if (config.StandingVerification)
+                    if (Game1.game1.IsActiveNoOverlay && config.StandingVerification)
                     {
                         movingTimer = resetMovingTimer * 60;
                         playingSound = false;
@@ -75,8 +75,25 @@ namespace LetMeRest
 
             // Singleplayer Pause Check
             if (!Context.IsMultiplayer && !Context.IsPlayerFree) return;
+            if (!Context.IsMultiplayer && !Game1.game1.IsActiveNoOverlay) return;
+
             // Multiplayer Pause Check
-            if (Context.IsMultiplayer && Game1.player.requestingTimePause) return;
+            if (Context.IsMultiplayer)
+            {
+                Farmer[] farmers = Game1.getAllFarmhands().ToArray();
+                if (farmers.Length <= 1)
+                {
+                    if (!Context.IsPlayerFree)
+                    {
+                        return;
+                    }
+
+                    if (!Game1.game1.IsActiveNoOverlay)
+                    {
+                        return;
+                    }
+                }
+            }
 
             // Check sitting
             if (Game1.player.IsSitting())
