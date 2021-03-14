@@ -6,7 +6,7 @@ using LetMeRest.Framework.Multiplayer;
 
 namespace LetMeRest
 {
-    class ModEntry : Mod
+    public class ModEntry : Mod
     {
         public static ModEntry instance;
         public static Data data;

@@ -1,6 +1,6 @@
 ﻿namespace LetMeRest
 {
-    class Data
+    public class Data
     {
         public float Multiplier { get; set; }
 
