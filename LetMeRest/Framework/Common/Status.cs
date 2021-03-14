@@ -12,15 +12,12 @@ namespace LetMeRest.Framework.Common
         {
             if (Game1.player.Stamina < Game1.player.MaxStamina)
             {
-                // Convert PerSecond multiplier value to PerTick
                 value /= 60;
 
-                // Get multipliers
                 float decorationMultiplier = AmbientInformation.Infos(radius, DataBase.ItemDataBase)[0];
                 float waterMultiplier = AmbientInformation.Infos(radius, DataBase.ItemDataBase)[1];
                 float paisageMultiplier = AmbientInformation.Infos(radius, DataBase.ItemDataBase)[2];
 
-                // Increases stamina in multiplayer
                 if (Context.IsMultiplayer)
                 {
                     Game1.player.Stamina += (value * ModEntry.data.Multiplier) *
@@ -29,7 +26,6 @@ namespace LetMeRest.Framework.Common
                         (paisageMultiplier * ModEntry.data.Multiplier) *
                         (secretMultiplier * ModEntry.data.Multiplier);
                 }
-                // Increases stamina in singleplayer
                 else
                 {
                     Game1.player.Stamina += (value * ModEntry.config.Multiplier) *
