@@ -19,16 +19,6 @@ namespace LetMeRest.Framework.Lists
                     restoring_buff.millisecondsDuration = 0;
                     break;
 
-                case "Afraid":
-                    Buff afraid_buff = Game1.buffsDisplay.otherBuffs.Find(i => i.source == "LMR_Afraid");
-                    if (afraid_buff == null)
-                    {
-                        afraid_buff = new Buff("What's going on?", 120 * 1000, "LMR_Afraid", 18);
-                        Game1.buffsDisplay.addOtherBuff(afraid_buff);
-                    }
-                    afraid_buff.millisecondsDuration = 120 * 1000;
-                    break;
-
                 case "Water":
                     Buff water_buff = Game1.buffsDisplay.otherBuffs.Find(i => i.source == "LMR_Water");
                     if (water_buff == null)
