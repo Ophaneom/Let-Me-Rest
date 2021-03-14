@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace LetMeRest
+namespace LetMeRest.Framework.Lists
 {
-    class DataBase
+    public class DataBase
     {
-        public static Dictionary<string, float> GetDataBase()
+        public static Dictionary<string, float> ItemDataBase;
+
+        public static void GetDataBase()
         {
             Dictionary<string, float> holder = new Dictionary<string, float>();
 
@@ -413,7 +415,7 @@ namespace LetMeRest
             holder.Add("Junimo Kart Arcade System", 0.1f);
             holder.Add("Prairie King Arcade System", 0.1f);
 
-            return holder;
+            ItemDataBase = holder;
         }
     }
 }

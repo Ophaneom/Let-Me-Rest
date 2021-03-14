@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
-using StardewModdingAPI.Events;
+using LetMeRest.Framework.Common;
 
 using StardewValley;
 
-namespace LetMeRest
+namespace LetMeRest.Framework.Lists
 {
-    class AmbientInformation
+    public class AmbientInformation
     {
         public static float[] Infos(int decorationRadius, Dictionary<string,float> ItemDataBase)
         {
@@ -56,6 +51,15 @@ namespace LetMeRest
                 }
             }
 
+            if (decorationMultiplier >= 1.2f && decorationMultiplier < 1.5f)
+            {
+                Buffs.SetBuff("Decoration");
+            }
+            else if (decorationMultiplier >= 1.5f)
+            {
+                Buffs.SetBuff("Decoration2");
+            }
+
 
             // Check water around player
             float waterMultiplier = 1;
@@ -68,6 +72,7 @@ namespace LetMeRest
                     if (Game1.player.currentLocation.isWaterTile((int)x, (int)y))
                     {
                         waterMultiplier = 1.5f;
+                        Buffs.SetBuff("Water");
                         break;
                     }
                 }
@@ -96,6 +101,7 @@ namespace LetMeRest
                         {
                             paisageMultiplier = 3f;
                             startSound();
+                            Buffs.SetBuff("Calm2");
                             break;
                         }
                     }
@@ -110,12 +116,14 @@ namespace LetMeRest
                 if (actualTileIndex == 909)
                 {
                     paisageMultiplier = 2.25f;
+                    Buffs.SetBuff("Calm");
                 }
                 // Check if player are above little bridges in Town
                 if (actualTileIndex == 779 || actualTileIndex == 780 ||
                     actualTileIndex == 781 || actualTileIndex == 782)
                 {
                     paisageMultiplier = 2.25f;
+                    Buffs.SetBuff("Calm");
                 }
             }
 
@@ -128,12 +136,14 @@ namespace LetMeRest
                     actualTileIndexBuildings == 781 || actualTileIndex == 782)
                 {
                     paisageMultiplier = 2.25f;
+                    Buffs.SetBuff("Calm");
                 }
                 if (actualTileIndexBuildings == 809 ||
                     actualTileIndexBuildings == 834 ||
                     actualTileIndexBuildings == 884)
                 {
                     paisageMultiplier = 2.25f;
+                    Buffs.SetBuff("Calm");
                 }
             }
 
@@ -150,6 +160,7 @@ namespace LetMeRest
                     actualTileIndex == 506)
                 {
                     paisageMultiplier = 2.25f;
+                    Buffs.SetBuff("Calm");
                 }
             }
 
@@ -165,6 +176,7 @@ namespace LetMeRest
                     actualTileIndex == 1689)
                 {
                     paisageMultiplier = 2.25f;
+                    Buffs.SetBuff("Calm");
                 }
 
                 // Check if player are below little bridges in Forest
@@ -173,6 +185,7 @@ namespace LetMeRest
                     actualTileIndexBuildings == 910 || actualTileIndexBuildings == 884)
                 {
                     paisageMultiplier = 2.25f;
+                    Buffs.SetBuff("Calm");
                 }
             }
 
@@ -196,6 +209,7 @@ namespace LetMeRest
                         {
                             paisageMultiplier = 3.5f;
                             startSound();
+                            Buffs.SetBuff("Calm2");
                             break;
                         }
                     }
@@ -230,6 +244,7 @@ namespace LetMeRest
                         {
                             paisageMultiplier = 3f;
                             startSound();
+                            Buffs.SetBuff("Calm2");
                             break;
                         }
                     }
@@ -242,6 +257,7 @@ namespace LetMeRest
             {
                 // Add multiplier in island east
                 paisageMultiplier = 1.5f;
+                Buffs.SetBuff("Calm");
             }
 
             // Saloon information check
@@ -249,6 +265,7 @@ namespace LetMeRest
             {
                 // Add multiplier in saloon
                 paisageMultiplier = 1.2f;
+                Buffs.SetBuff("Calm");
             }
 
             // Club information check
@@ -256,6 +273,7 @@ namespace LetMeRest
             {
                 // Add multiplier in club
                 paisageMultiplier = 1.2f;
+                Buffs.SetBuff("Calm");
             }
 
             // Island West Cave information check
@@ -263,6 +281,7 @@ namespace LetMeRest
             {
                 // Add multiplier in Island West Cave
                 paisageMultiplier = 1.5f;
+                Buffs.SetBuff("Calm");
             }
 
             // Island South East information check
@@ -270,6 +289,7 @@ namespace LetMeRest
             {
                 // Add multiplier in Island South East
                 paisageMultiplier = 1.5f;
+                Buffs.SetBuff("Calm");
             }
 
             // Island Shrine information check
@@ -277,6 +297,7 @@ namespace LetMeRest
             {
                 // Add multiplier in Island Shrine
                 paisageMultiplier = 1.5f;
+                Buffs.SetBuff("Calm");
             }
 
             // Island Farm Cave information check
@@ -284,6 +305,7 @@ namespace LetMeRest
             {
                 // Add multiplier in Island Farm Cave
                 paisageMultiplier = 1.5f;
+                Buffs.SetBuff("Calm");
             }
 
             if (Helper.ModRegistry.IsLoaded("FlashShifter.SVECode"))
@@ -304,6 +326,7 @@ namespace LetMeRest
                             {
                                 paisageMultiplier = 2.25f;
                                 startSound();
+                                Buffs.SetBuff("Calm2");
                                 break;
                             }
                         }
@@ -316,7 +339,8 @@ namespace LetMeRest
                     // Check if player are below the bridge in ShearwaterBridge
                     if (actualTileIndex == 598)
                     {
-                        paisageMultiplier = 2.25f;
+                        paisageMultiplier = 2;
+                        Buffs.SetBuff("Calm2");
                     }
                 }
 
@@ -324,7 +348,8 @@ namespace LetMeRest
                 if (Game1.player.currentLocation.Name == "Summit")
                 {
                     // Add multiplier in Summit
-                    paisageMultiplier = 2.1f;
+                    paisageMultiplier = 2.5f;
+                    Buffs.SetBuff("Calm2");
                 }
             }
 
@@ -341,9 +366,9 @@ namespace LetMeRest
 
         private static void startSound()
         {
-            if (!ModEntry.playingSound)
+            if (!Check.playingSound)
             {
-                ModEntry.playingSound = true;
+                Check.playingSound = true;
                 //Game1.playSound("wind");
             }
         }
