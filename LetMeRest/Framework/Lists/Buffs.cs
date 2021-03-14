@@ -1,4 +1,5 @@
 ﻿using StardewValley;
+using StardewModdingAPI;
 
 namespace LetMeRest.Framework.Lists
 {
@@ -56,9 +57,36 @@ namespace LetMeRest.Framework.Lists
                     Buff calm_buff = Game1.buffsDisplay.otherBuffs.Find(i => i.source == "LMR_Calm");
                     if (calm_buff == null)
                     {
-                        calm_buff = new Buff(0, 0, 0, 0, 2, 0, 2, 15, 0, 0, 2, 2, 120 * 1000, "LMR_Calm", ModEntry.instance.Helper.Translation.Get("buff.calm.source"));
-                        calm_buff.sheetIndex = 21;
-                        calm_buff.description = ModEntry.instance.Helper.Translation.Get("buff.calm.description");
+                        if (Context.IsMultiplayer && ModEntry.data.EnableBuffs)
+                        {
+                            calm_buff = new Buff(0, 0, 0, 0, 2, 0, 2, 15, 0, 0, 2, 2, 120 * 1000, "LMR_Calm", ModEntry.instance.Helper.Translation.Get("buff.calm.source"));
+                            calm_buff.sheetIndex = 21;
+                            calm_buff.description = ModEntry.instance.Helper.Translation.Get("buff.calm.description");
+                        }
+                        else
+                        {
+                            calm_buff = new Buff(ModEntry.instance.Helper.Translation.Get("buff.calm.description"), 120 * 1000, "LMR_Calm", 21);
+                            calm_buff.displaySource = ModEntry.instance.Helper.Translation.Get("buff.calm.source");
+                        }
+                        if (!Context.IsMultiplayer && ModEntry.config.EnableBuffs)
+                        {
+                            calm_buff = new Buff(0, 0, 0, 0, 2, 0, 2, 15, 0, 0, 2, 2, 120 * 1000, "LMR_Calm", ModEntry.instance.Helper.Translation.Get("buff.calm.source"));
+                            calm_buff.sheetIndex = 21;
+                            calm_buff.description = ModEntry.instance.Helper.Translation.Get("buff.calm.description");
+                        }
+                        else
+                        {
+                            calm_buff = new Buff(ModEntry.instance.Helper.Translation.Get("buff.calm.description"), 120 * 1000, "LMR_Calm", 21);
+                            calm_buff.displaySource = ModEntry.instance.Helper.Translation.Get("buff.calm.source");
+                        }
+
+                        Buff calm2_buff_ref = Game1.buffsDisplay.otherBuffs.Find(i => i.source == "LMR_Calm2");
+                        if (calm2_buff_ref != null)
+                        {
+                            calm2_buff_ref.millisecondsDuration = 0;
+                        }
+
+                        Game1.buffsDisplay.addOtherBuff(calm_buff);
                     }
                     calm_buff.millisecondsDuration = 120 * 1000;
                     break;
@@ -67,9 +95,35 @@ namespace LetMeRest.Framework.Lists
                     Buff calm2_buff = Game1.buffsDisplay.otherBuffs.Find(i => i.source == "LMR_Calm2");
                     if (calm2_buff == null)
                     {
-                        calm2_buff = new Buff(0, 0, 0, 0, 5, 0, 5, 35, 0, 0, 5, 5, 120 * 1000, "LMR_Calm2", ModEntry.instance.Helper.Translation.Get("buff.calm2.source"));
-                        calm2_buff.sheetIndex = 21;
-                        calm2_buff.description = ModEntry.instance.Helper.Translation.Get("buff.calm2.description");
+                        if (Context.IsMultiplayer && ModEntry.data.EnableBuffs)
+                        {
+                            calm2_buff = new Buff(0, 0, 0, 0, 5, 0, 5, 35, 0, 0, 5, 5, 120 * 1000, "LMR_Calm2", ModEntry.instance.Helper.Translation.Get("buff.calm2.source"));
+                            calm2_buff.sheetIndex = 21;
+                            calm2_buff.description = ModEntry.instance.Helper.Translation.Get("buff.calm2.description");
+                        }
+                        else
+                        {
+                            calm2_buff = new Buff(ModEntry.instance.Helper.Translation.Get("buff.calm2.description"), 120 * 1000, "LMR_Calm2", 21);
+                            calm2_buff.displaySource = ModEntry.instance.Helper.Translation.Get("buff.calm2.source");
+                        }
+                        if (!Context.IsMultiplayer && ModEntry.config.EnableBuffs)
+                        {
+                            calm2_buff = new Buff(0, 0, 0, 0, 5, 0, 5, 35, 0, 0, 5, 5, 120 * 1000, "LMR_Calm2", ModEntry.instance.Helper.Translation.Get("buff.calm2.source"));
+                            calm2_buff.sheetIndex = 21;
+                            calm2_buff.description = ModEntry.instance.Helper.Translation.Get("buff.calm2.description");
+                        }
+                        else
+                        {
+                            calm2_buff = new Buff(ModEntry.instance.Helper.Translation.Get("buff.calm2.description"), 120 * 1000, "LMR_Calm2", 21);
+                            calm2_buff.displaySource = ModEntry.instance.Helper.Translation.Get("buff.calm2.source");
+                        }
+
+                        Buff calm_buff_ref = Game1.buffsDisplay.otherBuffs.Find(i => i.source == "LMR_Calm");
+                        if (calm_buff_ref != null)
+                        {
+                            calm_buff_ref.millisecondsDuration = 0;
+                        }
+
                         Game1.buffsDisplay.addOtherBuff(calm2_buff);
                     }
                     calm2_buff.millisecondsDuration = 120 * 1000;

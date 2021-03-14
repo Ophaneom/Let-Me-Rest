@@ -7,5 +7,6 @@
         public bool RidingVerification { get; set; } = true;
         public bool StandingVerification { get; set; } = true;
         public bool EnableSecrets { get; set; } = true;
+        public bool EnableBuffs { get; set; } = true;
     }
 }

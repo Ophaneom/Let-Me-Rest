@@ -92,6 +92,23 @@ namespace LetMeRest.Framework.Common
             }
         }
 
+        public static void cm_OnChangeBuffs(string command, string[] args)
+        {
+            if (!Context.IsWorldReady) return;
+            if (Context.IsMultiplayer && Context.IsMainPlayer)
+            {
+                ModEntry.data.EnableBuffs = ModEntry.config.EnableSecrets = bool.Parse(args[0]);
+                ModEntry.instance.Helper.Data.WriteJsonFile($"MultiplayerData/{Game1.player.farmName}_Farm_Data.json", ModEntry.data);
+                NetController.SyncAllPlayers();
+                ModEntry.instance.Monitor.Log($"Buff status changed to: {args[0]}", LogLevel.Info);
+            }
+            if (!Context.IsMultiplayer)
+            {
+                ModEntry.config.EnableBuffs = bool.Parse(args[0]);
+                ModEntry.instance.Monitor.Log($"Buff status changed to: {args[0]}", LogLevel.Info);
+            }
+        }
+
         public static void cm_ResetData(string command, string[] args)
         {
             if (!Context.IsWorldReady) return;

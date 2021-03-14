@@ -25,6 +25,7 @@ namespace LetMeRest
             helper.Events.Multiplayer.ModMessageReceived += this.OnModMessageReceived;
 
             helper.ConsoleCommands.Add("rest_reset_data", "Resets the datafile", Commands.cm_ResetData);
+            helper.ConsoleCommands.Add("rest_enable_buffs", "Enable/disable buff status\nUsage: rest_enable_buffs <true/false>", Commands.cm_OnChangeBuffs);
             helper.ConsoleCommands.Add("rest_enable_riding", "Enable/disable the riding verification\nUsage: rest_enable_riding <true/false>", Commands.cm_OnChangeRiding);
             helper.ConsoleCommands.Add("rest_enable_sitting", "Enable/disable the sitting verification\nUsage: rest_enable_sitting <true/false>", Commands.cm_OnChangeSitting);
             helper.ConsoleCommands.Add("rest_enable_secrets", "Enable/disable the secrets verification\nUsage: rest_enable_secrets <true/false>", Commands.cm_OnChangeSecrets);

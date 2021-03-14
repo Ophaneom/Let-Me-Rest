@@ -9,7 +9,7 @@ namespace LetMeRest.Framework.Common
             if (!Check.playingSound)
             {
                 Check.playingSound = true;
-                Game1.playSound(soundName);
+                //Game1.playSound(soundName);
             }
         }
     }
