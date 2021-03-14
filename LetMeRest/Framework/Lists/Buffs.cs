@@ -38,7 +38,7 @@ namespace LetMeRest.Framework.Lists
                         decoration_buff.displaySource = ModEntry.instance.Helper.Translation.Get("buff.decoration.source");
                         Game1.buffsDisplay.addOtherBuff(decoration_buff);
                     }
-                    decoration_buff.millisecondsDuration = 0 * 1000;
+                    decoration_buff.millisecondsDuration = 0;
                     break;
 
                 case "Decoration2":
@@ -49,7 +49,7 @@ namespace LetMeRest.Framework.Lists
                         decoration2_buff.displaySource = ModEntry.instance.Helper.Translation.Get("buff.decoration2.source");
                         Game1.buffsDisplay.addOtherBuff(decoration2_buff);
                     }
-                    decoration2_buff.millisecondsDuration = 0 * 1000;
+                    decoration2_buff.millisecondsDuration = 0;
                     break;
 
                 case "Calm":
