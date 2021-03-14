@@ -100,7 +100,7 @@ namespace LetMeRest.Framework.Lists
                             TileId == 168 || TileId == 169)
                         {
                             paisageMultiplier = 3f;
-                            startSound();
+                            Sound.PlaySound("wind");
                             Buffs.SetBuff("Calm2");
                             break;
                         }
@@ -208,7 +208,7 @@ namespace LetMeRest.Framework.Lists
                         if (TileId == 1140 || TileId == 1141)
                         {
                             paisageMultiplier = 3.5f;
-                            startSound();
+                            Sound.PlaySound("wind");
                             Buffs.SetBuff("Calm2");
                             break;
                         }
@@ -243,7 +243,7 @@ namespace LetMeRest.Framework.Lists
                             TileId == 901)
                         {
                             paisageMultiplier = 3f;
-                            startSound();
+                            Sound.PlaySound("wind");
                             Buffs.SetBuff("Calm2");
                             break;
                         }
@@ -325,7 +325,7 @@ namespace LetMeRest.Framework.Lists
                                 TileId == 593)
                             {
                                 paisageMultiplier = 2.25f;
-                                startSound();
+                                Sound.PlaySound("wind");
                                 Buffs.SetBuff("Calm2");
                                 break;
                             }
@@ -362,15 +362,6 @@ namespace LetMeRest.Framework.Lists
             };
 
             return send;
-        }
-
-        private static void startSound()
-        {
-            if (!Check.playingSound)
-            {
-                Check.playingSound = true;
-                //Game1.playSound("wind");
-            }
         }
     }
 }

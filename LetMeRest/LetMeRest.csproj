@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\Common\Sound.cs" />
     <Compile Include="Framework\Lists\AmbientInformation.cs" />
     <Compile Include="Framework\Lists\Buffs.cs" />
     <Compile Include="Framework\Common\Check.cs" />
