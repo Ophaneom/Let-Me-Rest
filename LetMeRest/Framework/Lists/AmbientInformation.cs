@@ -78,7 +78,6 @@ namespace LetMeRest.Framework.Lists
                 }
             }
 
-
             // Reset paisage multiplier
             float paisageMultiplier = 1;
 
