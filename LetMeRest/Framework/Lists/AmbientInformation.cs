@@ -9,6 +9,9 @@ namespace LetMeRest.Framework.Lists
 {
     public class AmbientInformation
     {
+        public static int calmPlaceLevel;
+        public static bool waterNearby;
+
         public static float[] Infos(int decorationRadius, Dictionary<string,float> ItemDataBase)
         {
             IModHelper Helper = ModEntry.instance.Helper;
@@ -51,19 +54,11 @@ namespace LetMeRest.Framework.Lists
                 }
             }
 
-            if (decorationMultiplier >= 1.2f && decorationMultiplier < 1.5f)
-            {
-                Buffs.SetBuff("Decoration");
-            }
-            else if (decorationMultiplier >= 1.5f)
-            {
-                Buffs.SetBuff("Decoration2");
-            }
-
 
             // Check water around player
             float waterMultiplier = 1;
             float waterRadius = 3;
+            bool foundWater = false;
 
             for (var y = posPlayerTile.Y - waterRadius; y < posPlayerTile.Y + waterRadius; y++)
             {
@@ -72,11 +67,13 @@ namespace LetMeRest.Framework.Lists
                     if (Game1.player.currentLocation.isWaterTile((int)x, (int)y))
                     {
                         waterMultiplier = 1.5f;
-                        Buffs.SetBuff("Water");
+                        foundWater = true;
                         break;
                     }
                 }
             }
+            if (foundWater) waterNearby = true;
+            else waterNearby = false;
 
             // Reset paisage multiplier
             float paisageMultiplier = 1;
@@ -100,9 +97,15 @@ namespace LetMeRest.Framework.Lists
                         {
                             paisageMultiplier = 3f;
                             Sound.PlaySound("wind");
-                            Buffs.SetBuff("Calm2");
-                            break;
+                            calmPlaceLevel = 2;
+                            return new float[]
+                            {
+                                decorationMultiplier,
+                                waterMultiplier,
+                                paisageMultiplier
+                            };
                         }
+                        else calmPlaceLevel = 0;
                     }
                 }
             }
@@ -115,15 +118,24 @@ namespace LetMeRest.Framework.Lists
                 if (actualTileIndex == 909)
                 {
                     paisageMultiplier = 2.25f;
-                    Buffs.SetBuff("Calm");
+                    calmPlaceLevel = 1;
                 }
+                else calmPlaceLevel = 0;
                 // Check if player are above little bridges in Town
                 if (actualTileIndex == 779 || actualTileIndex == 780 ||
                     actualTileIndex == 781 || actualTileIndex == 782)
                 {
                     paisageMultiplier = 2.25f;
-                    Buffs.SetBuff("Calm");
+                    calmPlaceLevel = 1;
                 }
+                else calmPlaceLevel = 0;
+
+                return new float[]
+                {
+                    decorationMultiplier,
+                    waterMultiplier,
+                    paisageMultiplier
+                };
             }
 
 
@@ -135,15 +147,24 @@ namespace LetMeRest.Framework.Lists
                     actualTileIndexBuildings == 781 || actualTileIndex == 782)
                 {
                     paisageMultiplier = 2.25f;
-                    Buffs.SetBuff("Calm");
+                    calmPlaceLevel = 1;
                 }
+                else calmPlaceLevel = 0;
                 if (actualTileIndexBuildings == 809 ||
                     actualTileIndexBuildings == 834 ||
                     actualTileIndexBuildings == 884)
                 {
                     paisageMultiplier = 2.25f;
-                    Buffs.SetBuff("Calm");
+                    calmPlaceLevel = 1;
                 }
+                else calmPlaceLevel = 0;
+
+                return new float[]
+                {
+                    decorationMultiplier,
+                    waterMultiplier,
+                    paisageMultiplier
+                };
             }
 
 
@@ -159,8 +180,16 @@ namespace LetMeRest.Framework.Lists
                     actualTileIndex == 506)
                 {
                     paisageMultiplier = 2.25f;
-                    Buffs.SetBuff("Calm");
+                    calmPlaceLevel = 1;
                 }
+                else calmPlaceLevel = 0;
+
+                return new float[]
+                {
+                    decorationMultiplier,
+                    waterMultiplier,
+                    paisageMultiplier
+                };
             }
 
 
@@ -175,8 +204,9 @@ namespace LetMeRest.Framework.Lists
                     actualTileIndex == 1689)
                 {
                     paisageMultiplier = 2.25f;
-                    Buffs.SetBuff("Calm");
+                    calmPlaceLevel = 1;
                 }
+                else calmPlaceLevel = 0;
 
                 // Check if player are below little bridges in Forest
                 if (actualTileIndexBuildings == 809 || actualTileIndexBuildings == 859 ||
@@ -184,8 +214,16 @@ namespace LetMeRest.Framework.Lists
                     actualTileIndexBuildings == 910 || actualTileIndexBuildings == 884)
                 {
                     paisageMultiplier = 2.25f;
-                    Buffs.SetBuff("Calm");
+                    calmPlaceLevel = 1;
                 }
+                else calmPlaceLevel = 0;
+
+                return new float[]
+                {
+                    decorationMultiplier,
+                    waterMultiplier,
+                    paisageMultiplier
+                };
             }
 
 
@@ -208,9 +246,15 @@ namespace LetMeRest.Framework.Lists
                         {
                             paisageMultiplier = 3.5f;
                             Sound.PlaySound("wind");
-                            Buffs.SetBuff("Calm2");
-                            break;
+                            calmPlaceLevel = 2;
+                            return new float[]
+                            {
+                                decorationMultiplier,
+                                waterMultiplier,
+                                paisageMultiplier
+                            };
                         }
+                        else calmPlaceLevel = 0;
                     }
                 }
             }
@@ -243,9 +287,15 @@ namespace LetMeRest.Framework.Lists
                         {
                             paisageMultiplier = 3f;
                             Sound.PlaySound("wind");
-                            Buffs.SetBuff("Calm2");
-                            break;
+                            calmPlaceLevel = 2;
+                            return new float[]
+                            {
+                                decorationMultiplier,
+                                waterMultiplier,
+                                paisageMultiplier
+                            };
                         }
+                        else calmPlaceLevel = 0;
                     }
                 }
             }
@@ -256,56 +306,100 @@ namespace LetMeRest.Framework.Lists
             {
                 // Add multiplier in island east
                 paisageMultiplier = 1.5f;
-                Buffs.SetBuff("Calm");
+                calmPlaceLevel = 1;
+                return new float[]
+                {
+                    decorationMultiplier,
+                    waterMultiplier,
+                    paisageMultiplier
+                };
             }
 
             // Saloon information check
-            if (Game1.player.currentLocation.Name == "Saloon")
+            else if (Game1.player.currentLocation.Name == "Saloon")
             {
                 // Add multiplier in saloon
                 paisageMultiplier = 1.2f;
-                Buffs.SetBuff("Calm");
+                calmPlaceLevel = 1;
+                return new float[]
+                {
+                    decorationMultiplier,
+                    waterMultiplier,
+                    paisageMultiplier
+                };
             }
 
             // Club information check
-            if (Game1.player.currentLocation.Name == "Club")
+            else if (Game1.player.currentLocation.Name == "Club")
             {
                 // Add multiplier in club
                 paisageMultiplier = 1.2f;
-                Buffs.SetBuff("Calm");
+                calmPlaceLevel = 1;
+                return new float[]
+                {
+                    decorationMultiplier,
+                    waterMultiplier,
+                    paisageMultiplier
+                };
             }
 
             // Island West Cave information check
-            if (Game1.player.currentLocation.Name == "IslandWestCave1")
+            else if (Game1.player.currentLocation.Name == "IslandWestCave1")
             {
                 // Add multiplier in Island West Cave
                 paisageMultiplier = 1.5f;
-                Buffs.SetBuff("Calm");
+                calmPlaceLevel = 1;
+                return new float[]
+                {
+                    decorationMultiplier,
+                    waterMultiplier,
+                    paisageMultiplier
+                };
             }
 
             // Island South East information check
-            if (Game1.player.currentLocation.Name == "IslandSouthEast")
+            else if (Game1.player.currentLocation.Name == "IslandSouthEast")
             {
                 // Add multiplier in Island South East
                 paisageMultiplier = 1.5f;
-                Buffs.SetBuff("Calm");
+                calmPlaceLevel = 1;
+                return new float[]
+                {
+                    decorationMultiplier,
+                    waterMultiplier,
+                    paisageMultiplier
+                };
             }
 
             // Island Shrine information check
-            if (Game1.player.currentLocation.Name == "IslandShrine")
+            else if (Game1.player.currentLocation.Name == "IslandShrine")
             {
                 // Add multiplier in Island Shrine
                 paisageMultiplier = 1.5f;
-                Buffs.SetBuff("Calm");
+                calmPlaceLevel = 1;
+                return new float[]
+                {
+                    decorationMultiplier,
+                    waterMultiplier,
+                    paisageMultiplier
+                };
             }
 
             // Island Farm Cave information check
-            if (Game1.player.currentLocation.Name == "IslandFarmCave")
+            else if (Game1.player.currentLocation.Name == "IslandFarmCave")
             {
                 // Add multiplier in Island Farm Cave
                 paisageMultiplier = 1.5f;
-                Buffs.SetBuff("Calm");
+                calmPlaceLevel = 1;
+                return new float[]
+                {
+                    decorationMultiplier,
+                    waterMultiplier,
+                    paisageMultiplier
+                };
             }
+
+            else calmPlaceLevel = 0;
 
             if (Helper.ModRegistry.IsLoaded("FlashShifter.SVECode"))
             {
@@ -325,9 +419,15 @@ namespace LetMeRest.Framework.Lists
                             {
                                 paisageMultiplier = 2.25f;
                                 Sound.PlaySound("wind");
-                                Buffs.SetBuff("Calm2");
-                                break;
+                                calmPlaceLevel = 2;
+                                return new float[]
+                                {
+                                    decorationMultiplier,
+                                    waterMultiplier,
+                                    paisageMultiplier
+                                };
                             }
+                            else calmPlaceLevel = 0;
                         }
                     }
                 }
@@ -339,8 +439,15 @@ namespace LetMeRest.Framework.Lists
                     if (actualTileIndex == 598)
                     {
                         paisageMultiplier = 2;
-                        Buffs.SetBuff("Calm2");
+                        calmPlaceLevel = 2;
                     }
+                    else calmPlaceLevel = 0;
+                    return new float[]
+                    {
+                        decorationMultiplier,
+                        waterMultiplier,
+                        paisageMultiplier
+                    };
                 }
 
                 // Summit information check
@@ -348,19 +455,24 @@ namespace LetMeRest.Framework.Lists
                 {
                     // Add multiplier in Summit
                     paisageMultiplier = 2.5f;
-                    Buffs.SetBuff("Calm2");
+                    calmPlaceLevel = 2;
                 }
+
+                else calmPlaceLevel = 0;
+                return new float[]
+                {
+                    decorationMultiplier,
+                    waterMultiplier,
+                    paisageMultiplier
+                };
             }
 
-
-            float[] send = new float[]
+            return new float[]
             {
                 decorationMultiplier,
                 waterMultiplier,
                 paisageMultiplier
             };
-
-            return send;
         }
     }
 }

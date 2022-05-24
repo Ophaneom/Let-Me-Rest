@@ -11,6 +11,7 @@ namespace LetMeRest.Framework.Common
         public static bool canUpdateQuantity;
         private static float actualQuantity;
         private static int divideByCaveValues = 1;
+        private static float decorationMultiplierSave;
 
         public static void IncreaseStamina(float value, float secretMultiplier)
         {
@@ -23,6 +24,7 @@ namespace LetMeRest.Framework.Common
                     if (canUpdateQuantity)
                     {
                         float decorationMultiplier = AmbientInformation.Infos(radius, DataBase.ItemDataBase)[0];
+                        decorationMultiplierSave = decorationMultiplier;
                         float waterMultiplier = AmbientInformation.Infos(radius, DataBase.ItemDataBase)[1];
                         float paisageMultiplier = AmbientInformation.Infos(radius, DataBase.ItemDataBase)[2];
 
@@ -45,6 +47,7 @@ namespace LetMeRest.Framework.Common
                     if (canUpdateQuantity)
                     {
                         float decorationMultiplier = AmbientInformation.Infos(radius, DataBase.ItemDataBase)[0];
+                        decorationMultiplierSave = decorationMultiplier;
                         float waterMultiplier = AmbientInformation.Infos(radius, DataBase.ItemDataBase)[1];
                         float paisageMultiplier = AmbientInformation.Infos(radius, DataBase.ItemDataBase)[2];
 
@@ -65,19 +68,33 @@ namespace LetMeRest.Framework.Common
 
                 if (Context.IsMultiplayer)
                 {
-                    
+                    /* BUFF SYSTEM DISABLED ON MULTIPLAYER
                     if (ModEntry.data.EnableBuffs)
                     {
                         Buffs.SetBuff("Restoring");
+
+                        if (decorationMultiplierSave >= 1.2f && decorationMultiplierSave < 1.5f) Buffs.SetBuff("Decoration");
+                        else if (decorationMultiplierSave >= 1.5f) Buffs.SetBuff("Decoration2");
+
                         if (InCave()) Buffs.SetBuff("Afraid");
                     }
+                    */
                 }
                 else
                 {
                     if (ModEntry.config.EnableBuffs)
                     {
                         Buffs.SetBuff("Restoring");
+
+                        if (decorationMultiplierSave >= 1.2f && decorationMultiplierSave < 1.5f) Buffs.SetBuff("Decoration");
+                        else if (decorationMultiplierSave >= 1.5f) Buffs.SetBuff("Decoration2");
+
                         if (InCave()) Buffs.SetBuff("Afraid");
+
+                        if (AmbientInformation.calmPlaceLevel == 1) Buffs.SetBuff("Calm");
+                        else if (AmbientInformation.calmPlaceLevel == 2) Buffs.SetBuff("Calm2");
+
+                        if (AmbientInformation.waterNearby) Buffs.SetBuff("Water");
                     }
                 }
             }
@@ -95,12 +112,7 @@ namespace LetMeRest.Framework.Common
 
             foreach (string locationName in possibleLocationNames)
             {
-                if (s.Contains(locationName))
-                {
-                    string[] location = s.Split(new string[] { locationName }, StringSplitOptions.None);
-
-                    return true;
-                }
+                if (s.Contains(locationName)) return true;
             }
 
             return false;

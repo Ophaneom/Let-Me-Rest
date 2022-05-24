@@ -7,8 +7,6 @@ namespace LetMeRest.Framework.Lists
     {
         public static void SetBuff(string buff)
         {
-            //if (!ModEntry.data.EnableBuffs) return;
-
             switch (buff)
             {
                 case "Restoring":
