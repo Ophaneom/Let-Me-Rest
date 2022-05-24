@@ -7,6 +7,8 @@ namespace LetMeRest.Framework.Lists
     {
         public static void SetBuff(string buff)
         {
+            //if (!ModEntry.data.EnableBuffs) return;
+
             switch (buff)
             {
                 case "Restoring":
@@ -40,6 +42,17 @@ namespace LetMeRest.Framework.Lists
                         Game1.buffsDisplay.addOtherBuff(decoration_buff);
                     }
                     decoration_buff.millisecondsDuration = 0;
+                    break;
+
+                case "Afraid":
+                    Buff afraid_buff = Game1.buffsDisplay.otherBuffs.Find(i => i.source == "LMR_Afraid");
+                    if (afraid_buff == null)
+                    {
+                        afraid_buff = new Buff(ModEntry.instance.Helper.Translation.Get("buff.afraid.description"), 0, "LMR_Afraid", 18);
+                        afraid_buff.displaySource = ModEntry.instance.Helper.Translation.Get("buff.afraid.source");
+                        Game1.buffsDisplay.addOtherBuff(afraid_buff);
+                    }
+                    afraid_buff.millisecondsDuration = 0;
                     break;
 
                 case "Decoration2":
